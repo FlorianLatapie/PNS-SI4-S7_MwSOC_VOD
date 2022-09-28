@@ -25,7 +25,10 @@ public class Connection extends UnicastRemoteObject implements IConnection {
 
     @Override
     public IVODService login(String mail, String pwd) throws InvalidCredentialsException, RemoteException {
-        System.out.println("test login");
+        if (!db.checkThatUserExists(new User(mail, pwd))){
+            throw new InvalidCredentialsException(mail);
+        }
+        System.out.println("Login succeed :" + mail);
         return null;
     }
 }

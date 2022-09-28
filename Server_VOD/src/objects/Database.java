@@ -28,4 +28,8 @@ public class Database {
         // later we will import the database from a file
         users.add(new User("test", "test"));
     }
+
+    public boolean checkThatUserExists(User user) {
+        return users.contains(user);
+    }
 }
