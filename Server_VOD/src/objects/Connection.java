@@ -16,8 +16,8 @@ public class Connection extends UnicastRemoteObject implements IConnection {
     }
 
     @Override
-    public boolean signIn(String mail, String pwd) throws SignInFailed, RemoteException{
-        System.out.println("test signin");
+    public boolean signIn(String mail, String pwd) throws SignInFailed, RemoteException {
+        System.out.println("test sign in");
         return false;
     }
 

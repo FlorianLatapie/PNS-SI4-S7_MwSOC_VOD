@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws RemoteException, NotBoundException, InvalidCredentialsException {
         System.out.println("Client started");
 
-        Registry reg = LocateRegistry.getRegistry("localHost",2001);
+        Registry reg = LocateRegistry.getRegistry("localHost", 2001);
         IConnection c = (IConnection) reg.lookup("Connection");
 
         c.login("test", "test");
