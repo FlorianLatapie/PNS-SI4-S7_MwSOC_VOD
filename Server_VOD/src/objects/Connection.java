@@ -1,7 +1,7 @@
 package objects;
 
 import exceptions.InvalidCredentialsException;
-import exceptions.SignInFailed;
+import exceptions.SignUpFailed;
 import interfaces.IConnection;
 import interfaces.IVODService;
 
@@ -9,16 +9,18 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class Connection extends UnicastRemoteObject implements IConnection {
-
+    private static final Database db = Database.getInstance();
 
     public Connection(int port) throws RemoteException {
         super(port);
     }
 
     @Override
-    public boolean signIn(String mail, String pwd) throws SignInFailed, RemoteException {
-        System.out.println("test sign in");
-        return false;
+    public boolean signUp(String mail, String pwd) throws SignUpFailed, RemoteException {
+        if (!db.addUserToDB(new User(mail, pwd))){
+            throw new SignUpFailed(mail);
+        }
+        return true;
     }
 
     @Override

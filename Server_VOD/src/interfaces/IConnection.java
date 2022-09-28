@@ -1,12 +1,12 @@
 package interfaces;
 
 import exceptions.InvalidCredentialsException;
-import exceptions.SignInFailed;
+import exceptions.SignUpFailed;
 
 import java.rmi.RemoteException;
 
 public interface IConnection extends java.rmi.Remote {
-    boolean signIn(String mail, String pwd) throws SignInFailed, RemoteException;
+    boolean signUp(String mail, String pwd) throws SignUpFailed, RemoteException;
 
     IVODService login(String mail, String pwd) throws InvalidCredentialsException, RemoteException;
 }
