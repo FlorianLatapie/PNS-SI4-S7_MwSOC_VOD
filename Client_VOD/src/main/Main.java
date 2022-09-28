@@ -29,6 +29,8 @@ public class Main {
             System.out.println(e);
         }
 
-        var loginObject = c.login("Ludo", "123");
+        var VODService = c.login("Ludo", "123");
+
+        System.out.println(VODService.viewCatalog());
     }
 }

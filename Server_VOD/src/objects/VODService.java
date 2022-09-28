@@ -35,8 +35,10 @@ public class VODService extends UnicastRemoteObject implements IVODService {
         catalog.add(new MovieDesc("1234567890125", "The Matrix Revolutions", "The Matrix Revolutions is a 2003 science fiction action film written and directed by The Wachowskis, and starring Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving, Jada Pinkett Smith, Monica Bellucci, and Lambert Wilson. It is the third and final installment in The Matrix trilogy. The film depicts a dystopian future in which reality as perceived by most humans is actually a simulated reality called the Matrix, created by sentient machines to subdue the human population, while their bodies' heat and electrical activity are used as an energy source. Computer programmer Neo learns this truth and is drawn into a rebellion against the machines, which involves other people who have been freed from the \"dream world\"."));
     }
     @Override
-    public List<IMovieDesc> viewCatalog() throws RemoteException {
-        return null;
+    public String viewCatalog() throws RemoteException {
+        StringBuilder sb = new StringBuilder();
+        catalog.forEach(movie -> sb.append(movie.toString()).append("\n"));
+        return sb.toString();
     }
 
     @Override
