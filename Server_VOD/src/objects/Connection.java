@@ -17,7 +17,7 @@ public class Connection extends UnicastRemoteObject implements IConnection {
 
     @Override
     public boolean signUp(String mail, String pwd) throws SignUpFailed, RemoteException {
-        if (!db.addUserToDB(new User(mail, pwd))){
+        if (!db.addUserToDB(new User(mail, pwd))) {
             throw new SignUpFailed(mail);
         }
         return true;
@@ -25,10 +25,10 @@ public class Connection extends UnicastRemoteObject implements IConnection {
 
     @Override
     public IVODService login(String mail, String pwd) throws InvalidCredentialsException, RemoteException {
-        if (!db.checkThatUserExists(new User(mail, pwd))){
+        if (!db.checkThatUserExists(new User(mail, pwd))) {
             throw new InvalidCredentialsException(mail);
         }
         System.out.println("Login succeed :" + mail);
-        return null;
+        return VODService.getInstance();
     }
 }

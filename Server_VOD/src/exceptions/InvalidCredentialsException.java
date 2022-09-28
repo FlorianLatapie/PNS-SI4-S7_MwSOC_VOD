@@ -1,7 +1,7 @@
 package exceptions;
 
 public class InvalidCredentialsException extends Exception {
-    public InvalidCredentialsException(String mail){
+    public InvalidCredentialsException(String mail) {
         super("InvalidCredentialsException: " + mail + " doesn't exists");
     }
 }

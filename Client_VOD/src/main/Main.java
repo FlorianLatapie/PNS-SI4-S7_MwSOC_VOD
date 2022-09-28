@@ -1,11 +1,7 @@
 package main;
 
-import exceptions.InvalidCredentialsException;
-import exceptions.SignUpFailed;
 import interfaces.IConnection;
 
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -18,16 +14,21 @@ public class Main {
 
         try {
             c.signUp("test", "test");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
-        c.signUp("Ludo", "123");
 
         try {
-            c.login("GRR", "234");
-        }catch (Exception e){
+            c.signUp("Ludo", "123");
+        } catch (Exception e) {
             System.out.println(e);
         }
-        c.login("Ludo", "123");
+        try {
+            c.login("GRR", "234");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        var loginObject = c.login("Ludo", "123");
     }
 }
