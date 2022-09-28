@@ -3,18 +3,18 @@ package objects;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Database {
-    private static Database instance;
+public class UserDatabase {
+    private static UserDatabase instance;
     Set<User> users;
 
-    public static Database getInstance() {
+    public static UserDatabase getInstance() {
         if (instance == null) {
-            return new Database();
+            return new UserDatabase();
         }
         return instance;
     }
 
-    private Database() {
+    private UserDatabase() {
         users = new HashSet<>();
         importDB();
     }

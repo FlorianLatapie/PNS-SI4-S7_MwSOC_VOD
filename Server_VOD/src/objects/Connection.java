@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class Connection extends UnicastRemoteObject implements IConnection {
-    private static final Database db = Database.getInstance();
+    private static final UserDatabase db = UserDatabase.getInstance();
 
     public Connection(int port) throws RemoteException {
         super(port);
