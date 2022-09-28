@@ -1,4 +1,4 @@
 package interfaces;
 
-public interface IBill {
+public interface IBill extends java.rmi.Remote {
 }
