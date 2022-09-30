@@ -15,6 +15,18 @@ public class MovieDesc implements IMovieDesc {
         this.synopsis = synopsis;
     }
 
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
