@@ -5,8 +5,9 @@ if your lab session is Wednesday 28th of september, you have to deliver it at la
 If your lab session is on Monday 3rd of October, you have to deliver it on Monday 10th at 8 am. 
 (I will translate that constraint into dates, by putting students in groups: the one that has lab on wednesday, the other group that has the lab session on monday, perhaps this will need me to define 2 devoirs on this page of the LMS).
 
-You have to prepare a .zip, that contains the source code in Java. 
-Your codes must be commented. If needed, (but not mandatory), you can provide an attached Readme file if you think this can be useful.
+You have to prepare a `.zip`, that contains the source code in Java. 
+Your codes must be commented. 
+If needed, (but not mandatory), you can provide an attached **Readme** file if you think this can be useful.
 The lab must be done by group of (maximum) two students, and you have to clearly indicate the name of the 2 students. 
 You can work with a student that is having lab the same day as you, but, that may not mandatory belong to the same group.
 
@@ -80,11 +81,11 @@ You will find in the end of the file the RMI interfaces and method signatures yo
 
 - MovieDescExtended extends MovieDesc
   - `String synopsis;`
-  - `[]bytes teaser;`
+  - `bytes[] teaser;`
 
 ### Client side
 - ClientBox
-  - `void stream([]bytes chunck);`
+  - `void stream(bytes[] chunck);`
 
 ## Flow
 
