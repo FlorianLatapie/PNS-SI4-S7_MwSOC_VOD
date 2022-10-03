@@ -1,7 +1,9 @@
 package main;
 
-import exceptions.SignUpFailed;
-import interfaces.*;
+import interfaces.IBill;
+import interfaces.IConnection;
+import interfaces.IMovieDesc;
+import interfaces.IVODService;
 import objects.ClientBox;
 
 import java.rmi.RemoteException;
@@ -18,47 +20,64 @@ public class Main {
         IConnection c = (IConnection) reg.lookup("Connection");
 
         Scanner sc = new Scanner(System.in);
-        int sign;
         IVODService VODService = null;
+
         do {
-            System.out.println("1 - Sign up\n2 - Login");
-            sign = sc.nextInt();
-            if (sign == 1) trySignUp(c, sc);
-            else {
-                VODService = tryLogin(c, sc);
+            try {
+                System.out.println("1 - Sign up\n2 - Login");
+                var sign = sc.nextLine();
+                if (Integer.parseInt(sign) == 1) {
+                    trySignUp(c);
+                } else if (Integer.parseInt(sign) == 2) {
+                    VODService = tryLogin(c);
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input");
             }
         } while (VODService == null);
-        IClientBox clientBox = new ClientBox(10_003);
-        while (chooseMovie(VODService, sc));
+
+        chooseMovie(VODService);
+
     }
 
-    private static boolean chooseMovie(IVODService VODService, Scanner sc) throws RemoteException {
-        List<IMovieDesc> catalogArrayList = VODService.viewCatalog();
-        String sb = formatedMovieList(catalogArrayList);
-        int choice;
+    private static void chooseMovie(IVODService VODService) throws RemoteException {
+        Scanner sc = new Scanner(System.in);
+        String choice;
+        int intChoice;
+
+        var catalogArrayList = VODService.viewCatalog();
+        String sb = formattedMovieList(catalogArrayList);
+
         do {
             System.out.println("Catalog :");
             System.out.println(sb);
 
             System.out.print("Choose a movie (type 0 to quit) :");
-            choice = sc.nextInt();
-        }while (choice < 0 || choice >= catalogArrayList.size());
+            choice = sc.nextLine();
+            intChoice = Integer.parseInt(choice);
+        } while (intChoice < 0 || intChoice >= catalogArrayList.size());
 
-        if (choice != 0){
 
-            IBill bill = VODService.playMovie(catalogArrayList.get(choice - 1).getIsbn(), clientBox);
-            return true;
+        if (intChoice != 0) {
+            IBill bill = VODService.playMovie(catalogArrayList.get(intChoice - 1).getIsbn(), new ClientBox());
+            System.out.println("bill.getprice():" + bill.getPrice());
         }
-        return false;
     }
 
-    private static String formatedMovieList(List<IMovieDesc> catalogArrayList) throws RemoteException {
+    private static String formattedMovieList(List<IMovieDesc> catalogArrayList) throws RemoteException {
         StringBuilder sb = new StringBuilder();
-        catalogArrayList.forEach(movie -> sb.append(catalogArrayList.indexOf(movie) + 1).append(" - ").append(movie).append("\n"));
+        catalogArrayList.forEach(movie -> {
+            try {
+                sb.append(catalogArrayList.indexOf(movie) + 1).append(" - ").append(movie.getInfos()).append("\n");
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+        });
         return sb.toString();
     }
 
-    private static IVODService tryLogin(IConnection c, Scanner sc) {
+    private static IVODService tryLogin(IConnection c) {
+        Scanner sc = new Scanner(System.in);
         do {
             try {
                 System.out.print("Mail : ");
@@ -69,10 +88,11 @@ public class Main {
             } catch (Exception e) {
                 System.out.println(e.getMessage() + "\n");
             }
-        }while (true);
+        } while (true);
     }
 
-    private static void trySignUp(IConnection c, Scanner sc) {
+    private static void trySignUp(IConnection c) {
+        Scanner sc = new Scanner(System.in);
         do {
             try {
                 System.out.print("Mail : ");
@@ -85,6 +105,6 @@ public class Main {
             } catch (Exception e) {
                 System.out.println(e.getMessage() + "\n");
             }
-        }while (true);
+        } while (true);
     }
 }
