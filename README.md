@@ -1,6 +1,6 @@
 # PNS-SI4-S7_MWSCO_VOD
 
-## Subject
+## Subject
 You can find the subject [here](./subject.md)
 ## Students
 - Ludovic BAILET
