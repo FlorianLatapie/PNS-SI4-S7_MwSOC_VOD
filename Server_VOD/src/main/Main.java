@@ -7,6 +7,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+/**
+ * Main class of the server
+ */
 public class Main {
     public static void main(String[] args) throws RemoteException {
         System.out.println("Server started !");

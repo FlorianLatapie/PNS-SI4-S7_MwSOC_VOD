@@ -23,7 +23,11 @@ public class UserDatabase {
         importDB();
     }
 
-
+    /**
+     * Add a new user to the database
+     * @param u user to add
+     * @return true if the user has been added, false otherwise
+     */
     public boolean addUserToDB(User u) {
         if (checkThatUserExists(u)) {
             return false;
@@ -32,10 +36,18 @@ public class UserDatabase {
         return users.add(u);
     }
 
+    /**
+     * import the user database using DB class
+     */
     private boolean importDB() {
         return users.addAll(db.getUsers());
     }
 
+    /**
+     * Check if the user exists in the database
+     * @param user user to check
+     * @return true if the user exists, false otherwise
+     */
     public boolean checkThatUserExists(User user) {
         return users.contains(user);
     }

@@ -28,6 +28,8 @@ public class VODService extends UnicastRemoteObject implements IVODService {
         importDB();
     }
 
+    // TODO use DB class to import the catalog
+
     private void importDB() {
         // later we will import the database from a file
         catalog.add(new MovieDesc("1-23-456-789-012-3", "The Matrix", "The Matrix is a 1999 science fiction action film written and directed by The Wachowskis, starring Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving, and Joe Pantoliano. It depicts a dystopian future in which reality as perceived by most humans is actually a simulated reality called the Matrix, created by sentient machines to subdue the human population, while their bodies' heat and electrical activity are used as an energy source. Computer programmer Neo learns this truth and is drawn into a rebellion against the machines, which involves other people who have been freed from the \"dream world\"."));
@@ -38,6 +40,7 @@ public class VODService extends UnicastRemoteObject implements IVODService {
     @Override
     public String viewCatalog() throws RemoteException {
         StringBuilder sb = new StringBuilder("Catalog:\n");
+        // simple way to do it
         //catalog.forEach(movie -> sb.append(movie.toString()).append("\n"));
 
         // sorted by name and append the index of the movie in front of the name

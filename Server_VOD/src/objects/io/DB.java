@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * This class is used to manage the different databases of the application
+ */
 public class DB {
     private static DB instance;
     private final static String user_db_path = "src/objects/io/user_db.txt";
@@ -24,6 +27,9 @@ public class DB {
         initDB();
     }
 
+    /**
+     * Initialize the database, if the file doesn't exist, create it
+     */
     private void initDB() {
         File f = new File(user_db_path);
         if (!f.exists()) {
@@ -35,6 +41,10 @@ public class DB {
         }
     }
 
+    /**
+     * Read the database and return the list of users
+     * @return list of users
+     */
     public List<User> getUsers() {
         try {
             Scanner sc = new Scanner(new File(user_db_path));
@@ -54,6 +64,11 @@ public class DB {
         }
     }
 
+    /**
+     * Add a new user to the database file
+     * @param u user to add
+     * @return true if the user has been added, false otherwise
+     */
     public void addUser(User u) {
         try {
             FileWriter fw = new FileWriter(user_db_path, true);

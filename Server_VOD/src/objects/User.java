@@ -2,6 +2,10 @@ package objects;
 
 import java.util.Objects;
 
+/**
+ * This class is used to describe a user
+ */
+
 public class User {
     private String mail;
     private String pwd;
