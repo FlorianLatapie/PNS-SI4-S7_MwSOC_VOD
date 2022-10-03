@@ -20,7 +20,7 @@ public class Main {
             System.out.println(e.getMessage() + "\n");
         }
 
-        System.out.println("Try sign up with new user ('Ludo', '123'), should be successful at the first launch during the server lifetime");
+        System.out.println("Try sign up with new user ('Ludo', '123'), should be successful if the db is not already created in the server side");
         try {
             c.signUp("ludo@mail.com", "123");
         } catch (Exception e) {
