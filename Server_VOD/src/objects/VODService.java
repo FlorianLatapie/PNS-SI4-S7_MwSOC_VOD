@@ -40,25 +40,9 @@ public class VODService extends UnicastRemoteObject implements IVODService {
     @Override
     public String viewCatalog() throws RemoteException {
         StringBuilder sb = new StringBuilder("Catalog:\n");
-        // simple way to do it
-        //catalog.forEach(movie -> sb.append(movie.toString()).append("\n"));
-
-        // sorted by name and append the index of the movie in front of the name
-        catalog.stream()
-                .sorted(Comparator.comparing(IMovieDesc::getName))
-                .forEach(movie -> sb.append(
-                                        catalog
-                                                .stream()
-                                                .sorted(
-                                                        Comparator.comparing(IMovieDesc::getName)
-                                                )
-                                                .toList()
-                                                .indexOf(movie) + 1
-                                )
-                                .append(" - ")
-                                .append(movie)
-                                .append("\n")
-                );
+        
+        var catalogArrayList = catalog.stream().sorted(Comparator.comparing(IMovieDesc::getName)).toList();
+        catalogArrayList.stream().forEach(movie -> sb.append(catalogArrayList.indexOf(movie) + 1).append(" - ").append(movie).append("\n"));
 
         return sb.toString();
     }
