@@ -1,6 +1,7 @@
 package interfaces;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  * This interface is used to manage the VOD service for the client : show catalog, play a movie
@@ -11,7 +12,7 @@ public interface IVODService extends java.rmi.Remote {
      *
      * @return a formatted string of the catalog of the movies, starting with a number and an hyphen, each movie is separated by a new line
      */
-    String viewCatalog() throws RemoteException;
+    List<IMovieDesc> viewCatalog() throws RemoteException;
 
     /**
      * Method to play a movie

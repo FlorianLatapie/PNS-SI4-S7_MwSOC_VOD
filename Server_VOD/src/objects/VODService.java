@@ -9,6 +9,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class VODService extends UnicastRemoteObject implements IVODService {
@@ -38,13 +39,8 @@ public class VODService extends UnicastRemoteObject implements IVODService {
     }
 
     @Override
-    public String viewCatalog() throws RemoteException {
-        StringBuilder sb = new StringBuilder("Catalog:\n");
-        
-        var catalogArrayList = catalog.stream().sorted(Comparator.comparing(IMovieDesc::getName)).toList();
-        catalogArrayList.stream().forEach(movie -> sb.append(catalogArrayList.indexOf(movie) + 1).append(" - ").append(movie).append("\n"));
-
-        return sb.toString();
+    public List<IMovieDesc> viewCatalog() throws RemoteException {
+        return catalog.stream().sorted(Comparator.comparing(IMovieDesc::getName)).toList();
     }
 
     @Override
