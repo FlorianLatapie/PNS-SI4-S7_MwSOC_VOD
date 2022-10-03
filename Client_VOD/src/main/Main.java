@@ -1,9 +1,8 @@
 package main;
 
 import exceptions.SignUpFailed;
-import interfaces.IConnection;
-import interfaces.IMovieDesc;
-import interfaces.IVODService;
+import interfaces.*;
+import objects.ClientBox;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -29,11 +28,11 @@ public class Main {
                 VODService = tryLogin(c, sc);
             }
         } while (VODService == null);
-
-        while (chooseMovie(VODService, c, sc));
+        IClientBox clientBox = new ClientBox(10_003);
+        while (chooseMovie(VODService, sc));
     }
 
-    private static boolean chooseMovie(IVODService VODService, IConnection c, Scanner sc) throws RemoteException {
+    private static boolean chooseMovie(IVODService VODService, Scanner sc) throws RemoteException {
         List<IMovieDesc> catalogArrayList = VODService.viewCatalog();
         String sb = formatedMovieList(catalogArrayList);
         int choice;
@@ -46,7 +45,8 @@ public class Main {
         }while (choice < 0 || choice >= catalogArrayList.size());
 
         if (choice != 0){
-            VODService.playMovie(catalogArrayList.get(choice - 1).getIsbn(), clientBox);
+
+            IBill bill = VODService.playMovie(catalogArrayList.get(choice - 1).getIsbn(), clientBox);
             return true;
         }
         return false;
