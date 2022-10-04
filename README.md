@@ -3,8 +3,8 @@
 ## Subject
 You can find the subject [here](./subject.md)
 ## Students
-- Ludovic BAILET
-- Florian LATAPIE
+- [Ludovic BAILET](https://github.com/Ludovic-BAILET)
+- [Florian LATAPIE](https://github.com/FlorianLatapie)
 
 ## How to run 
 Using Java JDK 17.0
