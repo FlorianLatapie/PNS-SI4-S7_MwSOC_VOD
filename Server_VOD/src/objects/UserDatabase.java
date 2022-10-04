@@ -25,6 +25,7 @@ public class UserDatabase {
 
     /**
      * Add a new user to the database
+     *
      * @param u user to add
      * @return true if the user has been added, false otherwise
      */
@@ -45,6 +46,7 @@ public class UserDatabase {
 
     /**
      * Check if the user exists in the database
+     *
      * @param user user to check
      * @return true if the user exists, false otherwise
      */

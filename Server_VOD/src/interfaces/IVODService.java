@@ -19,7 +19,7 @@ public interface IVODService extends java.rmi.Remote, Serializable {
      * Method to play a movie
      *
      * @param isbn unique id of a movie
-     * @param box the client box to stream the movie
+     * @param box  the client box to stream the movie
      * @return the bill for the client
      */
 

@@ -8,6 +8,7 @@ import java.rmi.RemoteException;
 public interface IClientBox extends java.rmi.Remote {
     /**
      * Method to stream the chunk of the "video" to the client
+     *
      * @param chunk video chunk to stream
      */
     void stream(byte[] chunk) throws RemoteException;

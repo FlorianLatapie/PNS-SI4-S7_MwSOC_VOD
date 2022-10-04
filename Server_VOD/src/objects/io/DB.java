@@ -43,6 +43,7 @@ public class DB {
 
     /**
      * Read the database and return the list of users
+     *
      * @return list of users
      */
     public List<User> getUsers() {
@@ -66,6 +67,7 @@ public class DB {
 
     /**
      * Add a new user to the database file
+     *
      * @param u user to add
      * @return true if the user has been added, false otherwise
      */

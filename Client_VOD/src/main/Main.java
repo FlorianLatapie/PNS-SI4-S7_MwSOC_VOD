@@ -37,7 +37,7 @@ public class Main {
             }
         } while (VODService == null);
 
-        while (true){
+        while (true) {
             chooseMovie(VODService);
         }
     }
@@ -53,7 +53,13 @@ public class Main {
             System.exit(0);
     }
 
-    private static boolean chooseMovie(IVODService VODService) throws RemoteException {
+    /**
+     * Displays the catalog and ask the user to select a movie
+     *
+     * @param VODService
+     * @throws RemoteException
+     */
+    private static void chooseMovie(IVODService VODService) throws RemoteException {
         Scanner sc = new Scanner(System.in);
         String choice;
         int intChoice;
@@ -74,12 +80,17 @@ public class Main {
         if (intChoice != 0) {
             IBill bill = VODService.playMovie(catalogArrayList.get(intChoice - 1).getIsbn(), new ClientBox());
             System.out.println("bill.getprice():" + bill.getPrice());
-            return true;
         }
         askToExit();
-        return true;
     }
 
+    /**
+     * Generate a String from the list of movie desc with number and hyphen in front of the movie
+     *
+     * @param catalogArrayList
+     * @return the formatted movie list
+     * @throws RemoteException
+     */
     private static String formattedMovieList(List<IMovieDesc> catalogArrayList) throws RemoteException {
         StringBuilder sb = new StringBuilder();
         catalogArrayList.forEach(movie -> {
@@ -92,6 +103,12 @@ public class Main {
         return sb.toString();
     }
 
+    /**
+     * Ask the user to login
+     *
+     * @param c the Connection object
+     * @return a VODService object
+     */
     private static IVODService tryLogin(IConnection c) {
         Scanner sc = new Scanner(System.in);
         do {
@@ -107,6 +124,11 @@ public class Main {
         } while (true);
     }
 
+    /**
+     * Ask the user to create an account
+     *
+     * @param c the Connection object
+     */
     private static void trySignUp(IConnection c) {
         Scanner sc = new Scanner(System.in);
         do {
