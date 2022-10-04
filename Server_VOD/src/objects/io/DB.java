@@ -1,5 +1,7 @@
 package objects.io;
 
+import interfaces.IMovieDesc;
+import objects.MovieDesc;
 import objects.User;
 
 import java.io.File;
@@ -15,6 +17,7 @@ import java.util.Scanner;
 public class DB {
     private static DB instance;
     private final static String user_db_path = "src/objects/io/user_db.txt";
+    private final static String movie_db_path = "src/objects/io/movie_db.txt";
 
     public static DB getInstance() {
         if (instance == null) {
@@ -31,10 +34,20 @@ public class DB {
      * Initialize the database, if the file doesn't exist, create it
      */
     private void initDB() {
-        File f = new File(user_db_path);
-        if (!f.exists()) {
+        File user_db_file = new File(user_db_path);
+
+        if (!user_db_file.exists()) {
             try {
-                f.createNewFile();
+                user_db_file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        File movie_db_file = new File(movie_db_path);
+        if (!movie_db_file.exists()) {
+            try {
+                movie_db_file.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -59,6 +72,29 @@ public class DB {
             }
             sc.close();
             return users;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    /**
+     * Read the database and return the list of movies
+     * @return list of movies
+     */
+    public List<IMovieDesc> getMovies() {
+        try {
+            Scanner sc = new Scanner(new File(user_db_path));
+            List<IMovieDesc> movies = new ArrayList<>();
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                String[] tokens = line.split(";");
+                IMovieDesc m = new MovieDesc(tokens[0], tokens[1], tokens[2]);
+
+                movies.add(m);
+            }
+            sc.close();
+            return movies;
         } catch (Exception e) {
             e.printStackTrace();
             return new ArrayList<>();
