@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -36,11 +37,23 @@ public class Main {
             }
         } while (VODService == null);
 
-        chooseMovie(VODService);
-
+        while (true){
+            chooseMovie(VODService);
+        }
     }
 
-    private static void chooseMovie(IVODService VODService) throws RemoteException {
+    private static void askToExit() {
+        Scanner sc = new Scanner(System.in);
+        String choice;
+        do {
+            System.out.println("Do you want to quit ? y/n");
+            choice = sc.nextLine();
+        } while (!Objects.equals(choice, "y") && !Objects.equals(choice, "n"));
+        if (choice.equals("y"))
+            System.exit(0);
+    }
+
+    private static boolean chooseMovie(IVODService VODService) throws RemoteException {
         Scanner sc = new Scanner(System.in);
         String choice;
         int intChoice;
@@ -61,7 +74,10 @@ public class Main {
         if (intChoice != 0) {
             IBill bill = VODService.playMovie(catalogArrayList.get(intChoice - 1).getIsbn(), new ClientBox());
             System.out.println("bill.getprice():" + bill.getPrice());
+            return true;
         }
+        askToExit();
+        return true;
     }
 
     private static String formattedMovieList(List<IMovieDesc> catalogArrayList) throws RemoteException {
