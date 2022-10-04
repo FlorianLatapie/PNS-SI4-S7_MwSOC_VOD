@@ -81,6 +81,7 @@ public class DB {
 
     /**
      * Read the database and return the list of movies
+     *
      * @return list of movies
      */
     public List<IMovieDesc> getMovies() {
