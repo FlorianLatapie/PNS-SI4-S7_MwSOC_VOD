@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -84,7 +85,7 @@ public class DB {
      */
     public List<IMovieDesc> getMovies() {
         try {
-            Scanner sc = new Scanner(new File(user_db_path));
+            Scanner sc = new Scanner(new File(movie_db_path));
             List<IMovieDesc> movies = new ArrayList<>();
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();

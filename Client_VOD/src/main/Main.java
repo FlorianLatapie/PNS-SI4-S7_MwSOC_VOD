@@ -80,6 +80,7 @@ public class Main {
         if (intChoice != 0) {
             IBill bill = VODService.playMovie(catalogArrayList.get(intChoice - 1).getIsbn(), new ClientBox());
             System.out.println("bill.getprice():" + bill.getPrice());
+            return;
         }
         askToExit();
     }
