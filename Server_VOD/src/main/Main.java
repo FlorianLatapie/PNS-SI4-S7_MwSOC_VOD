@@ -12,9 +12,14 @@ import java.rmi.registry.Registry;
  */
 public class Main {
     public static void main(String[] args) throws RemoteException {
+        if (args.length != 1) {
+            System.out.println("Usage: java -jar server.jar <server_port>");
+            System.exit(1);
+        }
+
         System.out.println("Server started !");
 
-        Registry reg = LocateRegistry.createRegistry(2_001);
+        Registry reg = LocateRegistry.createRegistry(Integer.parseInt(args[0]));
         IConnection c = new Connection();
 
         reg.rebind("Connection", c);

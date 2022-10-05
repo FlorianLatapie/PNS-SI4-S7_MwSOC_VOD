@@ -15,9 +15,15 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        if (args.length != 2) {
+            System.out.println("Usage: java -jar client.jar <server_ip> <server_port>");
+            System.exit(1);
+        }
+
         System.out.println("Client started !\n");
 
-        Registry reg = LocateRegistry.getRegistry("localHost", 2001);
+
+        Registry reg = LocateRegistry.getRegistry(args[0], Integer.parseInt(args[1]));
         IConnection c = (IConnection) reg.lookup("Connection");
 
         Scanner sc = new Scanner(System.in);
@@ -75,7 +81,7 @@ public class Main {
             choice = sc.nextLine();
             try {
                 intChoice = Integer.parseInt(choice) - 1;
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
                 intChoice = -2;
             }
