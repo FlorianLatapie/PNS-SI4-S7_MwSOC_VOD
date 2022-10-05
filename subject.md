@@ -85,7 +85,7 @@ You will find in the end of the file the RMI interfaces and method signatures yo
 
 ### Client side
 - ClientBox
-  - `void stream(bytes[] chunck);`
+  - `void stream(bytes[] chunk);`
 
 ## Flow
 
