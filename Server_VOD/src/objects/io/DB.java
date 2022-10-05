@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -107,7 +106,6 @@ public class DB {
      * Add a new user to the database file
      *
      * @param u user to add
-     * @return true if the user has been added, false otherwise
      */
     public void addUser(User u) {
         try {

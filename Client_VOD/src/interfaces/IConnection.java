@@ -3,12 +3,13 @@ package interfaces;
 import exceptions.InvalidCredentialsException;
 import exceptions.SignUpFailed;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
  * Interface for the client connection, it is implemented as the main object of the RMI connection
  */
-public interface IConnection extends java.rmi.Remote {
+public interface IConnection extends Remote {
     /**
      * create a new user
      *
@@ -26,7 +27,7 @@ public interface IConnection extends java.rmi.Remote {
      * @param mail mail of the user
      * @param pwd  password of the user
      * @return the VODService object
-     * @throws InvalidCredentialsException if the user doesn't exists or the password is wrong
+     * @throws InvalidCredentialsException if the user doesn't exist or the password is wrong
      * @throws RemoteException             if the connection is lost
      */
     IVODService login(String mail, String pwd) throws InvalidCredentialsException, RemoteException;
