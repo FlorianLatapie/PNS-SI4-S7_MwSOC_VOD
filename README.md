@@ -14,6 +14,19 @@ If you are using IntelliJ, you can open the two folders as two projects, the .ru
 1. run `main.Main.main(String[] args);` from Server_VOD, Usage : `java -jar Server_VOD.jar <port>`
 2. run `main.Main.main(String[] args);` from Client_VOD, Usage : `java -jar Client_VOD.jar <ip> <port>`
 
+## Using the software
+Server side :
+- Just run it, nothing else 
+
+Client side :
+- Run
+- Log in or create a new account 
+- The film catalog is displayed 
+- Enter the number of the movie that you want to play using the number in front of the movie name 
+- You will revcieve the bill
+- You can watch another movie by typing again its number or type 0 to quit 
+- Type yes to confirm 
+
 ## Implemented bonus tasks
-- [x] Catch and manage connection exceptions (write a message in the client console and asks the user to re-enter the credentials, both for sign in and login)
+- [x] Catch and manage connection exceptions (write a message in the client console and asks the user to re-enter the credentials, both for sign in and login)
 - [x] save credentials in a file (server-side) and read that file whenever the server is launched, so you could stop and restart your server without losing data.
