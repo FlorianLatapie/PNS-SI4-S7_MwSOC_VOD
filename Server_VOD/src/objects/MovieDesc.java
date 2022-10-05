@@ -33,7 +33,7 @@ public class MovieDesc extends UnicastRemoteObject implements IMovieDesc, Serial
 
     @Override
     public String getInfos() {
-        return toString();
+        return name + " (" + isbn + ") : " + synopsis;
     }
 
     @Override
