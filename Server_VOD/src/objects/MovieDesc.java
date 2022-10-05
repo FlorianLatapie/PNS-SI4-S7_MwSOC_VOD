@@ -8,9 +8,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Objects;
 
 public class MovieDesc extends UnicastRemoteObject implements IMovieDesc, Serializable, java.rmi.Remote {
-    private String isbn;
-    private String name;
-    private String synopsis;
+    private final String isbn;
+    private final String name;
+    private final String synopsis;
 
     public MovieDesc(String isbn, String name, String synopsis) throws RemoteException {
         super();

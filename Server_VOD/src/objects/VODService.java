@@ -18,7 +18,7 @@ public class VODService extends UnicastRemoteObject implements IVODService, Seri
     private static VODService instance = null;
     private static Set<IMovieDesc> catalog;
 
-    private DB db;
+    private final DB db;
 
     public static VODService getInstance() throws RemoteException {
         if (instance == null) {
@@ -57,20 +57,20 @@ public class VODService extends UnicastRemoteObject implements IVODService, Seri
 
     @Override
     public IBill playMovie(String isbn, IClientBox box) throws RemoteException {
-        byte[] chunck = getMovie(isbn).getInfos().getBytes();
-        //byte[] chunck = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        byte[] chunk = getMovie(isbn).getInfos().getBytes();
+        //byte[] chunk = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-        // copy the first 5 bytes of the chunck
-        byte[] firstChunck = new byte[5];
-        System.arraycopy(chunck, 0, firstChunck, 0, 5);
-        box.stream(firstChunck);
+        // copy the first 5 bytes of the chunk
+        byte[] firstChunk = new byte[5];
+        System.arraycopy(chunk, 0, firstChunk, 0, 5);
+        box.stream(firstChunk);
 
         new Thread(() -> {
-            byte[] lastchunks = new byte[5];
-            for (int i = 5; i < chunck.length - 5; i += 5){
-                System.arraycopy(chunck, i, lastchunks, 0, 5);
+            byte[] lastChunks = new byte[5];
+            for (int i = 5; i < chunk.length - 5; i += 5){
+                System.arraycopy(chunk, i, lastChunks, 0, 5);
                 try {
-                    box.stream(lastchunks);
+                    box.stream(lastChunks);
                 } catch (RemoteException e) {
                     throw new RuntimeException(e);
                 }

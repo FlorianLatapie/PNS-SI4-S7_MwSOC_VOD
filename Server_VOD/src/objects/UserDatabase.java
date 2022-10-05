@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class UserDatabase {
     private static UserDatabase instance;
-    private DB db;
+    private final DB db;
     Set<User> users;
 
     public static UserDatabase getInstance() {

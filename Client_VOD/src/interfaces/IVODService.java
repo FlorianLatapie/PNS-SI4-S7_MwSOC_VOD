@@ -12,7 +12,7 @@ public interface IVODService extends Remote, Serializable {
     /**
      * Method to get the catalog of the movies
      *
-     * @return a formatted string of the catalog of the movies, starting with a number and an hyphen, each movie is separated by a new line
+     * @return an arraylist of the catalog of the movies
      */
     ArrayList<IMovieDesc> viewCatalog() throws RemoteException;
 

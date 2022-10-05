@@ -56,8 +56,8 @@ public class Main {
     /**
      * Displays the catalog and ask the user to select a movie
      *
-     * @param VODService
-     * @throws RemoteException
+     * @param VODService the VOD service used to get the Bill
+     * @throws RemoteException if the connection to the server failed
      */
     private static void chooseMovie(IVODService VODService) throws RemoteException {
         Scanner sc = new Scanner(System.in);
@@ -79,7 +79,7 @@ public class Main {
 
         if (intChoice != -1) {
             IBill bill = VODService.playMovie(catalogArrayList.get(intChoice).getIsbn(), new ClientBox());
-            System.out.println("bill.getprice():" + bill.getPrice());
+            System.out.println("-------------------------> Bill price : " + bill.getPrice());
             return;
         }
         askToExit();
@@ -88,11 +88,10 @@ public class Main {
     /**
      * Generate a String from the list of movie desc with number and hyphen in front of the movie
      *
-     * @param catalogArrayList
+     * @param catalogArrayList the list of movie description
      * @return the formatted movie list
-     * @throws RemoteException
      */
-    private static String formattedMovieList(List<IMovieDesc> catalogArrayList) throws RemoteException {
+    private static String formattedMovieList(List<IMovieDesc> catalogArrayList) {
         StringBuilder sb = new StringBuilder();
         catalogArrayList.forEach(movie -> {
             try {
