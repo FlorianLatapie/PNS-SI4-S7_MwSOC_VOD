@@ -14,7 +14,7 @@ If you are using IntelliJ, you can open the two folders as two projects, the .ru
 1. run `main.Main.main(String[] args);` from Server_VOD, Usage : `java -jar Server_VOD.jar <port>`
 2. run `main.Main.main(String[] args);` from Client_VOD, Usage : `java -jar Client_VOD.jar <ip> <port>`
 
-## Using the software
+## Using the software
 Server side :
 - Just run it, nothing else 
 
