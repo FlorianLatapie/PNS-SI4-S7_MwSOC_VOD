@@ -11,8 +11,8 @@ import java.rmi.server.UnicastRemoteObject;
 public class Connection extends UnicastRemoteObject implements IConnection {
     private static final UserDatabase db = UserDatabase.getInstance();
 
-    public Connection(int port) throws RemoteException {
-        super(port);
+    public Connection() throws RemoteException {
+        super();
     }
 
     @Override

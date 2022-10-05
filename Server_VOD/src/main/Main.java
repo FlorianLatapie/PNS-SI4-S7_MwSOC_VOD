@@ -15,7 +15,7 @@ public class Main {
         System.out.println("Server started !");
 
         Registry reg = LocateRegistry.createRegistry(2_001);
-        IConnection c = new Connection(10_001);
+        IConnection c = new Connection();
 
         reg.rebind("Connection", c);
     }

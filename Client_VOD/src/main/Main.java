@@ -73,7 +73,13 @@ public class Main {
 
             System.out.print("Choose a movie (type 0 to quit) :");
             choice = sc.nextLine();
-            intChoice = Integer.parseInt(choice) - 1;
+            try {
+                intChoice = Integer.parseInt(choice) - 1;
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                intChoice = -2;
+            }
+
         } while (intChoice < -1 || intChoice > catalogArrayList.size());
 
 
