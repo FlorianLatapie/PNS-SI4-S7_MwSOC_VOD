@@ -66,14 +66,18 @@ public class VODService extends UnicastRemoteObject implements IVODService, Seri
         box.stream(firstChunck);
 
         new Thread(() -> {
-            byte[] lastchunks = new byte[chunck.length - 5];
-            System.arraycopy(chunck, 5, lastchunks, 0, chunck.length - 5);
-            try {
-                box.stream(lastchunks);
-            } catch (RemoteException e) {
-                throw new RuntimeException(e);
+            byte[] lastchunks = new byte[5];
+            for (int i = 5; i < chunck.length - 5; i += 5){
+                System.arraycopy(chunck, i, lastchunks, 0, 5);
+                try {
+                    box.stream(lastchunks);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
             }
+            System.out.println("End of the movie");
         }).start();
+        System.out.println("Bill returned");
         return new Bill(new Random().nextInt(100));
     }
 }

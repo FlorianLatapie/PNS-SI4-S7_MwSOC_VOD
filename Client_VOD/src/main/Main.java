@@ -73,12 +73,12 @@ public class Main {
 
             System.out.print("Choose a movie (type 0 to quit) :");
             choice = sc.nextLine();
-            intChoice = Integer.parseInt(choice);
-        } while (intChoice < 0 || intChoice >= catalogArrayList.size());
+            intChoice = Integer.parseInt(choice) - 1;
+        } while (intChoice < -1 || intChoice > catalogArrayList.size());
 
 
-        if (intChoice != 0) {
-            IBill bill = VODService.playMovie(catalogArrayList.get(intChoice - 1).getIsbn(), new ClientBox());
+        if (intChoice != -1) {
+            IBill bill = VODService.playMovie(catalogArrayList.get(intChoice).getIsbn(), new ClientBox());
             System.out.println("bill.getprice():" + bill.getPrice());
             return;
         }
