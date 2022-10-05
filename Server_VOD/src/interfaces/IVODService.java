@@ -1,13 +1,14 @@
 package interfaces;
 
 import java.io.Serializable;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
  * This interface is used to manage the VOD service for the client : show catalog, play a movie
  */
-public interface IVODService extends java.rmi.Remote, Serializable {
+public interface IVODService extends Remote, Serializable {
     /**
      * Method to get the catalog of the movies
      *
