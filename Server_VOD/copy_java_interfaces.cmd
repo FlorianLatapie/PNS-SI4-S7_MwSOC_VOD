@@ -1,0 +1,1 @@
+xcopy src\interfaces\* ..\Client_VOD\src\interfaces /y
